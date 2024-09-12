@@ -1,25 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-
-public class GameOverDisplay : MonoBehaviour
+public class GameOverManager : MonoBehaviour
 {
-    // ชื่อผู้พัฒนา
-    public string developerName = "Kristy";  
+    // public Text gameOverText;  // ลาก Text UI สำหรับ "Game Over" มาที่นี่ใน Inspector
+    // public Text developerText;  // ลาก Text UI สำหรับชื่อผู้พัฒนามาที่นี่ใน Inspector
 
-    void OnGUI()
+    private bool isGameOver = false;
+
+    void Start()
     {
-        // กำหนดรูปแบบของข้อความ
-        GUIStyle style = new GUIStyle();
-        style.fontSize = 40;
-        style.normal.textColor = Color.white;
+        // ซ่อนข้อความในตอนเริ่มต้น
+        // gameOverText.gameObject.SetActive(false);
+        // developerText.gameObject.SetActive(false);
+    }
 
-        // แสดงข้อความ "Game Over"
-        GUI.Label(new Rect(10, 10, 300, 50), "Game Over", style);
+    void Update()
+    {
+        // if (isGameOver)
+        // {
+        //     // แสดงข้อความเมื่อ isGameOver เป็น true
+        //     gameOverText.gameObject.SetActive(true);
+        //     developerText.gameObject.SetActive(true);
+        // }
+    }
 
-        // แสดงชื่อผู้พัฒนา
-        GUI.Label(new Rect(10, 60, 300, 50), "Developed by: " + developerName, style);
+    // เรียกฟังก์ชันนี้เมื่อเกมจบ
+    public void TriggerGameOver()
+    {
+        Debug.Log("Game Over Triggered!");  // ตรวจสอบว่าฟังก์ชันถูกเรียกหรือไม่
+        isGameOver = true;
     }
 }
-

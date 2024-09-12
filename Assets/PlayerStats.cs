@@ -6,6 +6,8 @@ public class PlayerStats : MonoBehaviour
 {
     public float maxHealth;
     public float health;
+    public Logic logic;
+    public bool playerISAlive = true;
 
     private bool canTakeDamage = true;
 
@@ -15,6 +17,7 @@ public class PlayerStats : MonoBehaviour
     {
         anim = GetComponentInParent<Animator>();
         health = maxHealth;
+        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<Logic>();
     }
     public void TakeDamage(float damage)
     {
@@ -30,6 +33,8 @@ public class PlayerStats : MonoBehaviour
             GetComponent<PolygonCollider2D>().enabled = false;
             GetComponentInParent<GatherInput>().DisableControls();
             Debug.Log("Player is dead");
+            playerISAlive = false;
+            logic.gameOver();
         }
         StartCoroutine(DamagePrevention());
         
@@ -42,10 +47,12 @@ public class PlayerStats : MonoBehaviour
         {
             canTakeDamage = true;
             anim.SetBool("Damage", false);
+            Debug.Log(health);
         }
         else 
         {
             anim.SetBool("Death", true);
+            Debug.Log("Player is dead");
         }
     }
     

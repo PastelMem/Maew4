@@ -11,7 +11,7 @@ public class Spike : MonoBehaviour
         if (collision.CompareTag("PlayerStats"))
         {
             collision.GetComponent<PlayerStats>().TakeDamage(damage);
-            Debug.Log("damage");
+            Debug.Log($"{damage}");
         }
     }
     void Start()
